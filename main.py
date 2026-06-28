@@ -10,6 +10,15 @@ import os
 ARCHIVO_CSV = "paises.csv"
 
 
+def normalizar(texto):
+    """Elimina tildes y convierte a minúsculas para comparar texto sin distinción de acentos."""
+    import unicodedata
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', texto)
+        if unicodedata.category(c) != 'Mn'
+    ).lower()
+
+
 # ============================================================
 # MENÚ PRINCIPAL
 # ============================================================
@@ -135,7 +144,7 @@ def agregar_pais(paises):
             print("Error: el nombre no puede estar vacío.")
             continue
         # Verificar si ya existe
-        if any(p["nombre"].lower() == nombre.lower() for p in paises):
+        if any(normalizar(p["nombre"]) == normalizar(nombre) for p in paises):
             print(f"Error: ya existe un país con el nombre '{nombre}'.")
             return False
         break
@@ -210,7 +219,7 @@ def actualizar_pais(paises):
     # Buscar el país en la lista
     pais_encontrado = None
     for p in paises:
-        if p["nombre"].lower() == nombre.lower():
+        if normalizar(p["nombre"]) == normalizar(nombre):
             pais_encontrado = p
             break
 
@@ -268,7 +277,7 @@ def buscar_pais(paises):
         print("Error: debe ingresar un término de búsqueda.")
         return
 
-    resultados = [p for p in paises if termino.lower() in p["nombre"].lower()]
+    resultados = [p for p in paises if normalizar(termino) in normalizar(p["nombre"])]
 
     if not resultados:
         print(f"No se encontraron países que coincidan con '{termino}'.")
@@ -308,7 +317,7 @@ def filtrar_por_continente(paises):
         print("Error: debe ingresar un continente.")
         return
 
-    resultados = [p for p in paises if p["continente"].lower() == continente.lower()]
+    resultados = [p for p in paises if normalizar(p["continente"]) == normalizar(continente)]
 
     if not resultados:
         print(f"No se encontraron países en el continente '{continente}'.")
