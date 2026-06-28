@@ -187,9 +187,16 @@ def agregar_pais(paises):
         if not continente:
             print("Error: el continente no puede estar vacío.")
             continue
-        if continente not in continentes_validos:
+        # Buscar el continente válido ignorando tildes y mayúsculas
+        continente_encontrado = next(
+            (c for c in continentes_validos if normalizar(c) == normalizar(continente)),
+            None
+        )
+        if continente_encontrado is None:
             print(f"Error: continente inválido. Debe ser uno de: {', '.join(continentes_validos)}")
             continue
+        # Guardar el nombre oficial del continente (con tilde y mayúscula correcta)
+        continente = continente_encontrado
         break
 
     # Agregar el nuevo país a la lista
