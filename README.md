@@ -11,12 +11,9 @@ Aplicación de consola desarrollada en Python 3 que permite gestionar un dataset
 
 ---
 
-## Integrantes
+## Alumno
 
-| Nombre | Legajo |
-|--------|--------|
-| [Nombre Integrante 1] | [Legajo] |
-| [Nombre Integrante 2] | [Legajo] |
+Facundo Gabriel Centurión
 
 ---
 
@@ -165,8 +162,8 @@ Cantidad de países por continente:
 
 ## Video demostrativo
 
-[Insertar enlace al video aquí]
+https://youtu.be/DolC-qEHaCA
 
 ## Documentación en PDF
 
-[Insertar enlace al PDF aquí]
+https://github.com/Facto91/tpi-programacion1/blob/main/Trabajo_Practico_Integrador_Programacion1_Centurion_Facundo.pdf
